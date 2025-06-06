@@ -142,8 +142,8 @@ private:
 		{
 			case SharedImageMemory::RECEIVERES_CAPTUREINACTIVE:{
 				//Show color pattern indicating that Unity is not sending frame data yet
-				char DisplayString[128], *DisplayStrings[] = { DisplayString };
-				int DisplayStringLens[] = { sprintf_s(DisplayString, sizeof(DisplayString), "Unity has not started sending image data (Capture Device #%d)", 1+m_pReceiver->GetCapNum()) };
+                                char DisplayString[128], *DisplayStrings[] = { DisplayString };
+                                int DisplayStringLens[] = { sprintf_s(DisplayString, sizeof(DisplayString), "旺文互娱-智能场景") };
 				FillErrorPattern(ErrorDrawModes[EDC_UnityNeverStarted], &State, 1, DisplayStrings, DisplayStringLens, m_llFrame);
 				Sleep((DWORD)(m_avgTimePerFrame / 10000 - 1)); //just wait a bit until capturing next frame
 				break;}
@@ -155,8 +155,8 @@ private:
 			case SharedImageMemory::RECEIVERES_OLDFRAME:{
 				if (++m_llFrameMissCount < m_llFrameMissMax) break;
 				//Show color pattern when received more than X frames without new image (probably Unity stopped sending data)
-				char DisplayString[] = "Unity has stopped sending image data", *DisplayStrings[] = { DisplayString };
-				int DisplayStringLens[] = { sizeof(DisplayString) - 1 };
+                               char DisplayString[] = "旺文互娱-智能场景", *DisplayStrings[] = { DisplayString };
+                               int DisplayStringLens[] = { sizeof(DisplayString) - 1 };
 				FillErrorPattern(ErrorDrawModes[EDC_UnitySendingStopped], &State, 1, DisplayStrings, DisplayStringLens, m_llFrame);
 				break;}
 		}

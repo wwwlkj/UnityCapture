@@ -66,7 +66,7 @@ public class UnityCapture : MonoBehaviour
 
     void OnDestroy()
     {
-        CaptureInterface.Close();
+        CaptureInterface.Dispose();
     }
 
     void OnRenderImage(RenderTexture source, RenderTexture destination)
@@ -86,7 +86,7 @@ public class UnityCapture : MonoBehaviour
         }
     }
 
-    public class Interface
+    public class Interface : System.IDisposable
     {
         [System.Runtime.InteropServices.DllImport("UnityCapturePlugin")] extern static System.IntPtr CaptureCreateInstance(int CapNum);
         [System.Runtime.InteropServices.DllImport("UnityCapturePlugin")] extern static void CaptureDeleteInstance(System.IntPtr instance);
@@ -107,6 +107,12 @@ public class UnityCapture : MonoBehaviour
         {
             if (CaptureInstance != System.IntPtr.Zero) CaptureDeleteInstance(CaptureInstance);
             CaptureInstance = System.IntPtr.Zero;
+        }
+
+        public void Dispose()
+        {
+            Close();
+            System.GC.SuppressFinalize(this);
         }
 
         public ECaptureSendResult SendTexture(Texture Source, int Timeout = 1000, bool DoubleBuffering = false, EResizeMode ResizeMode = EResizeMode.Disabled, EMirrorMode MirrorMode = EMirrorMode.Disabled)

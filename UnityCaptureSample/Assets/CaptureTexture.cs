@@ -30,7 +30,7 @@ public class CaptureTexture : MonoBehaviour
     void OnDestroy()
     {
         //Cleanup capture interface
-        captureInterface.Close();
+        captureInterface.Dispose();
     }
 
     void Update()
