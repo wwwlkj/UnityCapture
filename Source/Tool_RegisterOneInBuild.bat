@@ -29,7 +29,7 @@ if '%errorlevel%' NEQ '0' (
     ECHO 1. Debug   - 64 bit
     ECHO 2. Release - 64 bit
     ECHO 3. Debug   - 32 bit
-    ECHO 4. Release - 64 bit
+    ECHO 4. Release - 32 bit
     ECHO.
 
     CHOICE /C 1234 /M "Enter your choice:"
@@ -37,14 +37,14 @@ if '%errorlevel%' NEQ '0' (
     :: Note - list ERRORLEVELS in decreasing order
     IF ERRORLEVEL 4 GOTO Release32bit
     IF ERRORLEVEL 3 GOTO Debug32bit
-    IF ERRORLEVEL 2 GOTO Releae64bit
+    IF ERRORLEVEL 2 GOTO Release64bit
     IF ERRORLEVEL 1 GOTO Debug64bit
 
 :Debug64bit
     regsvr32 "Debug-UnityCaptureFilter64bit\UnityCaptureFilter64bit.dll"
     GOTO End
 
-:Releae64bit
+:Release64bit
     regsvr32 "Release-UnityCaptureFilter64bit\UnityCaptureFilter64bit.dll"
     GOTO End
 

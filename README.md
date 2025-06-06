@@ -32,6 +32,15 @@ number of capture devices you wish to register.
 When updating from a version from before April 2023 it is recommended to uninstall the old version first.
 The old version is available [`here`](../../archive/7a3278dcefe37544370226e92bdfd60140434045.zip).
 
+## Building from Source
+
+The native DirectShow filter and Unity plugin are built with Visual Studio.
+
+1. Install **Visual Studio 2019** (or newer) with the *Desktop development with C++* workload and the Windows 10 SDK.
+2. Open `Source/UnityCapture.sln` in Visual Studio.
+3. Select the desired **Configuration** (Debug or Release) and **Platform** (x64 or Win32) and build the solution.
+4. After building, run `Tool_RegisterOneInBuild.bat` from the `Source` directory to register the filter. Use `Tool_UnregisterAllInBuild.bat` to remove all registered builds.
+
 
 ## Test in Unity
 
@@ -146,9 +155,18 @@ Otherwise it is recommended to leave scaling and mirroring disabled in the Unity
 - Saving of the output device configuration
 - Bilinear filtered resizing
 
+## Go example
+
+A minimal Go program demonstrating how to send frames to the filter via shared memory is available in [goexample/main.go](goexample/main.go). Run it with:
+
+```
+go run ./goexample
+```
+
 
 ## License
 
-Unity Capture is divided into two parts that are separately licensed.  
-The filter 'UnityCaptureFilter' is available under the [MIT license](https://choosealicense.com/licenses/mit/).  
-The Unity plugin 'UnityCapturePlugin' is available under the [zlib license](https://choosealicense.com/licenses/zlib/) (so attribution in your Unity project is optional).
+Unity Capture is divided into two parts that are separately licensed.
+The filter 'UnityCaptureFilter' is available under the MIT license.
+The Unity plugin 'UnityCapturePlugin' is available under the zlib license (attribution in your Unity project is optional).
+See [LICENSE](LICENSE) for the full license texts.
